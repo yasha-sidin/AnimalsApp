@@ -12,11 +12,11 @@ class AnimalsStorage {
     case _: PackAnimal => packAnimalStorage.addLast(animal);
   }
 
-  def getPets(): util.LinkedList[Animal] = {
+  def getPets: util.LinkedList[Animal] = {
     petStorage;
   }
 
-  def getPackAnimals(): util.LinkedList[Animal] = {
+  def getPackAnimals: util.LinkedList[Animal] = {
     packAnimalStorage;
   }
 }

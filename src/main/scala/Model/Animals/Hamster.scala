@@ -2,14 +2,16 @@ package Model.Animals
 
 import Model.{Command, Pet, PetCommands}
 
+import java.text.SimpleDateFormat
 import java.util
 import java.util.Date
 
 class Hamster(private var name: String, private var dateOfBirth: Date,
-              private val commands: PetCommands[Command]) extends Pet(name, dateOfBirth, commands) {
-  def this(name: String, dateOfBirth: Date) = this(name, dateOfBirth, new PetCommands[Command](new util.LinkedList()));
+              private val commands: PetCommands) extends Pet(name, dateOfBirth, commands) {
+  def this(name: String, dateOfBirth: Date) = this(name, dateOfBirth, new PetCommands(new util.LinkedList()));
 
   override def toString: String = {
-    s"Hamster { name: $name, dateOfBirth: $dateOfBirth }"
+    val formatter = new SimpleDateFormat("dd.MM.yyyy");
+    s"Hamster { name: $name, dateOfBirth: ${formatter.format(dateOfBirth)} }"
   }
 }

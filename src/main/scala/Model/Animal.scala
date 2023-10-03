@@ -6,7 +6,7 @@ import java.util
 import java.util.Date
 
 abstract class Animal(private var name: String,
-                      private var dateOfBirth: Date, private val commands: PetCommands[Command]) {
+                      private var dateOfBirth: Date, private val commands: PetCommands) {
 
   private val id = java.util.UUID.randomUUID.toString;
 
@@ -23,7 +23,7 @@ abstract class Animal(private var name: String,
     this(name, dateOfBirth, new PetCommands(new util.LinkedList()));
   }
 
-  def getDateOfBirth(): Date = {
+  def getDateOfBirth: Date = {
     this.dateOfBirth;
   }
 
@@ -31,23 +31,29 @@ abstract class Animal(private var name: String,
     this.dateOfBirth = dateOfBirth;
   }
 
-  def getName(): String = {
+  def getName: String = {
     this.name;
   }
 
-  def setName(): Unit = {
+  def setName(name: String): Unit = {
+    if (name.length < 2) {
+      throw new RuntimeException("Length of the animal's name must be more than 1 character. ");
+    }
+    if (namesList.contains(name)) {
+      throw new RuntimeException("Please choose another name, because this has already occupied. ")
+    }
     this.name = name;
   }
 
-  def addCommand(command: Command) = {
+  def addCommand(command: Command): Unit = {
     this.commands.addCommand(command);
   }
 
-  def getId(): String = {
+  def getId: String = {
     this.id;
   }
 
-  def getPetCommands(): PetCommands[Command] = {
+  def getPetCommands: PetCommands = {
     this.commands;
   }
 }
