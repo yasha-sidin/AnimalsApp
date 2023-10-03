@@ -35,8 +35,8 @@ trait AppRealization {
       if (animalType.toUpperCase() == "HORSE") {
         animal = new Horse(name, dateOfBirth);
       }
-      storage.addAnimal(animal);
       val count: Try[Unit] = Using(counter) { counts =>
+        storage.addAnimal(animal);
         counter.addCount();
       }
     } catch {
